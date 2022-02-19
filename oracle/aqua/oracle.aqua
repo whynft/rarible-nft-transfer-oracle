@@ -1,0 +1,7 @@
+service OracleApi("oracle"):
+    oracle(password: string) -> string
+
+func oracle(password: string, node:string, relay:string) -> string:
+    on node via relay:
+        res <- OracleApi.oracle(password)
+    <- res
