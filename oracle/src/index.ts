@@ -17,11 +17,10 @@ const config = {
  	rinkebyWss: "wss://rinkeby.infura.io/ws/v3/84653a332a3f4e70b1a46aaea97f0435",
  	ropstenWss: "wss://ropsten.infura.io/ws/v3/84653a332a3f4e70b1a46aaea97f0435",
  	rinkeby: "rinkeby",
- 	bridgeSenderContract: "0x2AE3c4624fb0AD6cc3fa8EE9676d912CD6880926",
- 	ipfs: 'ipfs://ipfs/QmQNCr8fJZMjZgxTsfarBKrGnwDNcScigfr1rdwbBNxEZ6',
- 	chainId: 3,
+ 	bridgeSenderContract: "0x65aAfb68470c570867E7F73d5461889d275f97c9",
+ 	chainId: 3, // is ropsten
  	oracleAddress: "0xa7A1462A3F067E959a4DDD0630F49BE15716341E",
- 	collection: "0xB0EA149212Eb707a1E5FC1D2d3fD318a8d94cf05"
+ 	collection: "0x1dfE8adcd3952e2ab345B403141E357adC493AA8"
 }
 
 class Oracle implements OracleApiDef {
@@ -160,7 +159,7 @@ class Oracle implements OracleApiDef {
 
     async signForMint(web3: any, password: any, ipfs: any, nftTokenId: any, nftOwner: any): Promise<any> {
         const [creator] = await web3.eth.getAccounts()
-        const form = await this.createForm(web3, config.ipfs, creator, nftTokenId, nftOwner)
+        const form = await this.createForm(web3, ipfs, creator, nftTokenId, nftOwner)
         const signed = await this.makeSign(web3, form, password)
         return signed
     }
